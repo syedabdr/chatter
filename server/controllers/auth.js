@@ -2,8 +2,19 @@ const { connect } = require('getstream');
 const bcrypt = require('bcrypt');
 const StreamChat = require('stream-chat').StreamChat;
 const crypto = require('crypto');
+const admin = require('firebase-admin');
+
+const serviceAccount = require('../chatter-59548-firebase-adminsdk-8lmu5-e24c3aec8d.json'); //secret key for accessing database
+
 require('dotenv').config();
 
+//initializing database
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: 'https://chatter-59548-default-rtdb.firebaseio.com/', // Replace with your Firebase project URL
+  });
+
+  
 const api_key = "wew3dwx4h5aa";
 const api_secret = "fbq2r366nqb6e36r52whjd9svh9ceeg8gvgwump4eumm38xw9gf7279kns9hd5rj";
 const app_id = "1264786";
@@ -20,7 +31,17 @@ const signup = async (req, res) => {
 
         const token = serverClient.createUserToken(userId);
 
+        const userData = {
+            fullName,
+            username,
+            userId,
+            phoneNumber,
+          };
+
+        await admin.database().ref(`/users/${userId}`).set(userData);
+
         res.status(200).json({ token, fullName, username, userId, hashedPassword, phoneNumber });
+
     } catch (error) {
         console.log(error);
 
