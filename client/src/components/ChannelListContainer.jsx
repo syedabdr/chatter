@@ -8,6 +8,19 @@ import LogoutIcon from '../assets/logout.png'
 import deleteIcon from '../assets/delete.jpg'
 
 const cookies = new Cookies();
+const handleDeleteClick = () => {
+    // Display a confirmation dialog
+    const isConfirmed = window.confirm('Are you sure you want to delete?');
+
+    // If the user confirms, proceed with deletion
+    if (isConfirmed) {
+      // Add your deletion logic here
+      console.log('Deleted..');
+    } else {
+      // If the user cancels, do nothing or show a different message
+      console.log('Deletion canceled.');
+    }
+  };
 
 const SideBar = ({ logout }) => (
     <div className="channel-list__sidebar">
@@ -16,16 +29,17 @@ const SideBar = ({ logout }) => (
                 <img src={logo} alt="Logo" width="30" />
             </div>
         </div>
+
         <div className="channel-list__sidebar__icon2">
             <div className="icon1__inner" onClick={logout}>
                 <img src={LogoutIcon} alt="Logout" width="30" />
             </div>
         </div>
-        <div className='channel-list__sidebar__icon3'>
-            <div className='deleteIcon__inner' /*OnClick={}*/ >
-                <img src={deleteIcon} alt="Delete" width={48}/>
-            </div>
 
+        <div className='channel-list__sidebar__icon3'>
+            <div className='deleteIcon__inner' onClick={handleDeleteClick}>
+                <img src={deleteIcon} alt="Delete" width="48"/>
+            </div>
         </div>
     </div>
 );
@@ -58,7 +72,7 @@ const ChannelListContent = ({ isCreating, setIsCreating, setCreateType, setIsEdi
 
         window.location.reload();
     }
-
+   
     const filters = { members: { $in: [client.userID] } };
 
     return (
