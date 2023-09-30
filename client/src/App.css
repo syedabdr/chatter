@@ -407,18 +407,19 @@
     align-items: center;
     justify-content: center;
   }
-
   .deleteIcon__inner {
     font-family: Helvetica Neue, sans-serif;
-  width: 48px; /* Adjust the width to your preference */
-  height: 48px; /* Same as the width to create a perfect circle */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%; /* Set border-radius to 50% for a circular shape */
-  overflow: hidden; /* Ensure the content stays within the rounded borders */
-  background-color: #ccc;   /* Ensure the content stays within the rounded borders */
-  margin-left: 12px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ccc;
+    margin-left: 12px;
+    margin-top: 450px; /* Adjust this value to bring the icon into the visible area */
+    cursor: pointer;
   }
   
   
