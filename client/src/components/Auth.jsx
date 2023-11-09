@@ -127,6 +127,7 @@ const Auth = () => {
                             )}
                         <div className="auth__form-container_fields-content_button">
                             <button>{isSignup ? "Sign Up" : "Sign In"}</button>
+                            
                         </div>
                     </form>
                     <div className="auth__form-container_fields-account">
