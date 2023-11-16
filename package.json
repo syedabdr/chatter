@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "stream-chat": "^8.11.0",
+    "stream-chat-react": "^10.10.1",
+    "universal-cookie": "^6.1.1"
+  }
+}
