@@ -5,6 +5,7 @@ import Cookies from 'universal-cookie';
 import { ChannelSearch, TeamChannelList, TeamChannelPreview } from './';
 import logo from '../assets/logo.png'
 import LogoutIcon from '../assets/logout.png'
+import deleteIcon from '../assets/delete.jpg'
 
 const cookies = new Cookies();
 
@@ -19,6 +20,12 @@ const SideBar = ({ logout }) => (
             <div className="icon1__inner" onClick={logout}>
                 <img src={LogoutIcon} alt="Logout" width="30" />
             </div>
+        </div>
+        <div className='channel-list__sidebar__icon3'>
+            <div className='deleteIcon__inner' /*OnClick={}*/ >
+                <img src={deleteIcon} alt="Delete" width={48}/>
+            </div>
+
         </div>
     </div>
 );
