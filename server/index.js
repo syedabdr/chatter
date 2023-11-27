@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth.js');
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 require('dotenv').config();
+
 
 // CORS configuration
 const corsOptions = {
@@ -32,3 +32,4 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => console.log(`SERVER RUNNING ON ${PORT}`));
+
