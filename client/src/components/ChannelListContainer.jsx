@@ -1,26 +1,46 @@
 import React, { useState } from 'react';
 import { ChannelList, useChatContext } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
-
+import { StreamChat } from 'stream-chat';
 import { ChannelSearch, TeamChannelList, TeamChannelPreview } from './';
 import logo from '../assets/logo.png'
 import LogoutIcon from '../assets/logout.png'
 import deleteIcon from '../assets/delete.jpg'
 
 const cookies = new Cookies();
-const handleDeleteClick = () => {
-    // Display a confirmation dialog
-    const isConfirmed = window.confirm('Are you sure you want to delete?');
 
-    // If the user confirms, proceed with deletion
-    if (isConfirmed) {
-      // Add your deletion logic here
-      console.log('Deleted..');
-    } else {
-      // If the user cancels, do nothing or show a different message
-      console.log('Deletion canceled.');
+/***** 
+const userDeletion=async()=>{
+    try{
+        const isConfirmed = window.confirm("Are you sure you want to delete?");
+        if(isConfirmed){
+             // Initialize the Stream Chat client with your credentials
+             const apiKey = "wew3dwx4h5aa";
+             const client = new StreamChat(apiKey);
+ 
+             const userId = cookies.get('userId');
+
+             if (!userId) {
+                console.error("User ID not found in cookies.");
+                return;
+            }
+             // Connect to Stream Chat
+             await client.connectUser({ id: userId }, 'YOUR_STREAM_CHAT_USER_TOKEN');
+ 
+             // Delete the user from Stream Chat
+             await client.deleteUser();
+ 
+             console.log("User deleted from Stream Chat.");
+        }
+        else{
+            console.log("ERROR DELETING USER");
+        }
     }
-  };
+    catch(error){
+        console.log("ERROR DELETING USER:", error);
+    }
+}
+*/
 
 const SideBar = ({ logout }) => (
     <div className="channel-list__sidebar">
@@ -35,12 +55,14 @@ const SideBar = ({ logout }) => (
                 <img src={LogoutIcon} alt="Logout" width="30" />
             </div>
         </div>
+{/* 
+  <div className='channel-list__sidebar__icon3'>
+      <div className='deleteIcon__inner' onClick={userDeletion}>
+          <img src={deleteIcon} alt="Delete" width="48"/>
+      </div>
+  </div>
+*/}
 
-        <div className='channel-list__sidebar__icon3'>
-            <div className='deleteIcon__inner' onClick={handleDeleteClick}>
-                <img src={deleteIcon} alt="Delete" width="48"/>
-            </div>
-        </div>
     </div>
 );
 

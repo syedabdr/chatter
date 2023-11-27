@@ -34,13 +34,10 @@ const CreateChannel = ({ createType, setIsCreating }) => {
                 name: channelName, members: selectedUsers
             });
             
-            console.log("newChannel.data:", newChannel.data.members);
-            console.log("newChannel.data2:", newChannel.data.members);
             
               const createdChannelName = newChannel.data.name;
               const createdMembers = newChannel.data.members;
 
-              console.log("createdMembers:", createdMembers);
       
                   if (Array.isArray(createdMembers)) {
                     console.log("INSIDE");

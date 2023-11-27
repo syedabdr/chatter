@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "firebase": "^10.6.0",
+    "firebase": "^10.7.0",
     "firebase-admin": "^11.11.1",
     "stream-chat": "^8.11.0",
     "stream-chat-react": "^10.10.1",

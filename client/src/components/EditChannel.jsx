@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useChatContext } from 'stream-chat-react';
-
 import { UserList } from './';
 import { CloseCreateChannel } from '../assets';
 
@@ -28,7 +27,12 @@ const EditChannel = ({ setIsEditing }) => {
     const updateChannel = async (event) => {
         event.preventDefault();
 
+        const previousChannelName = channel?.data?.name;
+        console.log("previousChannelName: " + previousChannelName);
         const nameChanged = channelName !== (channel.data.name || channel.data.id);
+        const currentChannelName = channelName;
+        console.log("nameChanged: " + nameChanged);
+        console.log("newName: " + currentChannelName);
 
         if(nameChanged) {
             await channel.update({ name: channelName }, { text: `Channel name changed to ${channelName}`});
@@ -37,10 +41,10 @@ const EditChannel = ({ setIsEditing }) => {
         if(selectedUsers.length) {
             await channel.addMembers(selectedUsers);
         }
+            setChannelName(null); // Reset channelName
+            setIsEditing(false);
+            setSelectedUsers([]);
 
-        setChannelName(null);
-        setIsEditing(false);
-        setSelectedUsers([]);
     }
 
     return (

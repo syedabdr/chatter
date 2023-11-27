@@ -65,6 +65,7 @@ const login = async (req, res) => {
         const token = serverClient.createUserToken(users[0].id);
 
         if(success) {
+            const { fullName, id: userId } = users[0];
             res.status(200).json({ token, fullName: users[0].fullName, username, userId: users[0].id});
             
         } else {
@@ -76,4 +77,6 @@ const login = async (req, res) => {
     }
 };
 
-module.exports = { signup, login }
+
+
+module.exports = { signup, login}
