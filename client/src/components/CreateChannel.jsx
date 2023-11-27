@@ -3,6 +3,7 @@ import { useChatContext } from 'stream-chat-react';
 
 import { UserList } from './';
 import { CloseCreateChannel } from '../assets';
+import { createGroup } from './createGroup';
 
 const ChannelNameInput = ({ channelName = '', setChannelName }) => {
     const handleChange = (event) => {
@@ -32,9 +33,24 @@ const CreateChannel = ({ createType, setIsCreating }) => {
             const newChannel = await client.channel(createType, channelName, {
                 name: channelName, members: selectedUsers
             });
+            
+            console.log("newChannel.data:", newChannel.data.members);
+            console.log("newChannel.data2:", newChannel.data.members);
+            
+              const createdChannelName = newChannel.data.name;
+              const createdMembers = newChannel.data.members;
 
-            await newChannel.watch();
-
+              console.log("createdMembers:", createdMembers);
+      
+                  if (Array.isArray(createdMembers)) {
+                    console.log("INSIDE");
+                    await createGroup(channelName, createdMembers);
+                    console.log("SUCCESS");
+                } else {
+                    console.error("Error: 'members' is not an array.");
+                }
+          
+         
             setChannelName('');
             setIsCreating(false);
             setSelectedUsers([client.userID]);
